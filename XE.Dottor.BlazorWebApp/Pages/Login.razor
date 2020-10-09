@@ -1,0 +1,66 @@
+﻿@page "/Login"
+@layout FullLayout
+
+@inject NavigationManager NavigationManager
+@inject XeAuthenticationStateProvider AuthStateProvider
+
+<div class="card mx-auto" style="width: 25rem;">
+    <div class="card-body">
+        <h5 class="card-title">Login</h5>
+
+        <EditForm EditContext="loginEditContext" OnValidSubmit="@HandleValidSubmit">
+            <DataAnnotationsValidator />
+
+            <div class="form-group">
+                <label for="Username">Username:</label>
+                <InputText @bind-Value="Model.Username" class="form-control" />
+                <ValidationMessage For="() => Model.Username" />
+            </div>
+
+            <div class="form-group">
+                <label for="Password">Password:</label>
+                <InputText type="password" @bind-Value="Model.Password" class="form-control" />
+                <ValidationMessage For="() => Model.Password" />
+            </div>
+
+
+            <button type="submit" disabled="@isInvalid">Submit</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+
+    private EditContext loginEditContext;
+    private bool isInvalid = true;
+
+    private LoginViewModel Model { get; set; } = new LoginViewModel();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        loginEditContext = new EditContext(Model);
+        loginEditContext.OnFieldChanged += EditContext_OnFieldChanged;
+    }
+
+    private void EditContext_OnFieldChanged(object sender, FieldChangedEventArgs e)
+    {
+        isInvalid = !loginEditContext.Validate();
+    }
+
+    private void HandleValidSubmit()
+    {
+        if (Model.Password == Model.Username)
+        {
+            XeAuthenticationStateProvider.IsAuthenticated = true;
+            AuthStateProvider.NotifyAuthenticationStateChanged();
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+
+
+
+}

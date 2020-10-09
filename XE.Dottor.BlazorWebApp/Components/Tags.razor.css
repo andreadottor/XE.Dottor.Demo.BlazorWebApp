@@ -1,0 +1,8 @@
+﻿ul.tags {
+    list-style: none;
+}
+
+    ul.tags li {
+        float: right;
+        margin-left: 30px;
+    }

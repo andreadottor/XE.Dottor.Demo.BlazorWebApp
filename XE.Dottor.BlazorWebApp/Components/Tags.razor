@@ -1,0 +1,14 @@
+﻿@if (Value != null && Value.Any())
+{
+    <ul class="tags">
+        @foreach (var t in Value)
+        {
+            <li class="tag"><i class="fas fa-tag"></i> @t</li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<string> Value { get; set; }
+}

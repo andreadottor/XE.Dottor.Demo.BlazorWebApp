@@ -1,0 +1,104 @@
+﻿@inject IJSRuntime JSRuntime;
+
+@*<h2 style="text-transform: @(level > 0 ? "capitalize" : "uppercase")">@Value.Title</h2>*@
+
+<p></p>
+
+
+
+<div class="card">
+    <div class="card-header text-center">
+        <NavLink href="@($"Details/{Value.Id}")"  >
+            @CreateTitle()
+        </NavLink>
+    </div>
+    <div class="card-body">
+       
+        @Value.Body
+    </div>
+    <div class="card-footer text-muted">
+        
+        <div class="row">
+            <div class="col-2">
+                <AuthorizeView>
+                    <Authorized>
+                        <a @onclick="() => AddLike()" @onclick:preventDefault href="#">
+                            <i class="fas fa-heart"></i> @Value.Likes
+                        </a>
+                    </Authorized>
+                    <NotAuthorized>
+                        <i class="fas fa-heart"></i> @Value.Likes
+                    </NotAuthorized>
+                </AuthorizeView>
+            </div>
+            <div class="col text-right">
+               <Tags Value="Value.Tags" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public PostViewModel Value { get; set; }
+    const int userId = 1;
+
+    protected async Task AddLike()
+    {
+        Value.Likes++;
+        // recupero i valori dallo storage
+        //
+        var tempJsData = await JSRuntime.InvokeAsync<Dictionary<int, PostExtDto>>("readINFOS", userId);
+        // aggiorno
+        //
+        tempJsData[Value.Id].likes = Value.Likes;
+        //
+        // eseguo il salvtaggio nello storage
+        await JSRuntime.InvokeVoidAsync("saveINFOS", tempJsData, userId);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    /// <remarks>
+    /// const level = likes >= 42 ? 0 : 6 - Math.floor(likes / 6);      +     style: { "text-transform": level>0 ? "capitalize" : "uppercase" }
+    /// :  0-5 usa H6;  6-12 usa H5; ... ; 30-35 usa H1;  >=42->H0 
+    /// </remarks>
+    private RenderFragment CreateTitle() => builder =>
+    {
+        var level = Value.Likes >= 42 ? 0 : (6 - Convert.ToInt32(Math.Floor((double)Value.Likes / 6)));
+
+        switch (Value.Likes)
+        {
+            case int n when (n <= 5):
+                builder.OpenElement(0, "H6");
+                break;
+            case int n when (n <= 12):
+                builder.OpenElement(0, "H5");
+                break;
+            case int n when (n <= 19):
+                builder.OpenElement(0, "H4");
+                break;
+            case int n when (n <= 23):
+                builder.OpenElement(0, "H3");
+                break;
+            case int n when (n <= 29):
+                builder.OpenElement(0, "H2");
+                break;
+            case int n when (n <= 35):
+                builder.OpenElement(0, "H1");
+                break;
+            default:
+                builder.OpenElement(0, "H0");
+                break;
+        }
+
+        builder.AddAttribute(1, "style", "text-transform:" + (level > 0 ? "capitalize" : "uppercase"));
+        //builder.AddAttribute(2, "class", "card-title");
+        builder.AddContent(3, Value.Title);
+        builder.CloseElement();
+    };
+}

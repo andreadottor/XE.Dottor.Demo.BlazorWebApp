@@ -1,0 +1,82 @@
+﻿@page "/Details/{Id:int}"
+@attribute [Authorize]
+
+@using System.Security.Cryptography;
+@using System.IO;
+@using System.Text;
+
+@using System.Net.Http
+@inject HttpClient Http
+@inject Store Store
+@inject IJSRuntime JSRuntime
+
+<h3>Dettaglio post</h3>
+<hr />
+
+@if (Post != null)
+{
+    <h1>@Post.Title</h1>
+
+    <p>@Post.Body</p>
+
+    @if (Comments != null && Comments.Any())
+    {
+        <div style="padding-left:50px; margin-top: 50px;">
+            <strong>Commenti:</strong>
+
+            @foreach (var c in Comments)
+            {
+                <hr />
+                <p class="clearfix">
+                    <img src="@c.GravatarUrl" class="float-left mr-3" />
+                    <strong>@c.Name:</strong> @c.Body
+                </p>
+            }
+        </div>
+    }
+}
+else
+{
+    <p>post non trovato</p>
+}
+
+<Loading Visible="loading" />
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private bool loading = true;
+
+    public PostViewModel Post { get; set; }
+    public IEnumerable<CommentViewModel> Comments { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        Post = Store.Posts.FirstOrDefault(p => p.Id == Id);
+
+
+        var comments = await Http.GetFromJsonAsync<CommentDto[]>($"https://jsonplaceholder.typicode.com/posts/{Id}/comments");
+
+        var temp = new List<CommentViewModel>();
+        foreach (var comment in comments)
+        {
+            temp.Add(new CommentViewModel(comment, await GetGravatarUrl(comment.Email)));
+        }
+
+        Comments = temp;
+
+        loading = false;
+
+    }
+
+    private async Task<string> GetGravatarUrl(string email)
+    {
+
+        return await JSRuntime.InvokeAsync<string>("getGravatar", email, 100);
+    }
+
+
+
+}

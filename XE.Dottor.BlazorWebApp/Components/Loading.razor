@@ -1,0 +1,11 @@
+﻿@if (Visible)
+{
+    <div class="text-center">
+        <img alt="loading" src="/loading.gif" />
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool Visible { get; set; }
+}
