@@ -1,10 +1,10 @@
 {
-  "name": "XE.Dottor.BlazorWebApp",
-  "short_name": "XE.Dottor.BlazorWebApp",
+  "name": "XE Blazor",
+  "short_name": "XE App",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#03173d",
+  "theme_color": "#DA3636",
   "icons": [
     {
       "src": "icon-512.png",
