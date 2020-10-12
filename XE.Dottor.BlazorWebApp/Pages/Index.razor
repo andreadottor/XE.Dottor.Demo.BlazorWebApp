@@ -2,8 +2,9 @@
 
 @using System.Net.Http
 @inject HttpClient Http
-@inject IJSRuntime JSRuntime;
-@inject Store Store;
+@inject IJSRuntime JSRuntime
+@inject Store Store
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <h3>Elenco post</h3>
 
@@ -15,7 +16,7 @@
 {
     @foreach (var p in filteredItems)
     {
-        <Post Value="@p" />
+        <Post Value="@p" OnTagClicked="TagClicked" />
     }
 }
 else
@@ -26,24 +27,26 @@ else
 <Loading Visible="loading" />
 
 @code {
-    // https://jsonplaceholder.typicode.com/posts
 
-    const int userId = 1;
-
-    //private PostViewModel[] items;
     private IEnumerable<PostViewModel> filteredItems => string.IsNullOrEmpty(filterText) ? Store.Posts : Store.Posts.Where(p => p.Tags.Contains(filterText));
     private string filterText;
     private bool loading = true;
 
-
     protected override async Task OnInitializedAsync()
     {
+        var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var userName = state.User.Identity.Name;
+
         var list = await Http.GetFromJsonAsync<PostDto[]>("https://jsonplaceholder.typicode.com/posts");
-        var tempJsData = await JSRuntime.InvokeAsync<Dictionary<int, PostExtDto>>("readINFOS", userId);
+        var tempJsData = await JSRuntime.InvokeAsync<Dictionary<int, PostExtDto>>("readINFOS", userName);
 
         Store.Posts = list.Select(p => new PostViewModel(p, tempJsData[p.Id])).ToArray();
         loading = false;
     }
 
+    protected void TagClicked(string tag)
+    {
+        filterText = tag;
+    }
 
 }

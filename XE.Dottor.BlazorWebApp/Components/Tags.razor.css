@@ -6,3 +6,10 @@
         float: right;
         margin-left: 30px;
     }
+
+.tag{
+    cursor: pointer;
+}
+    .tag:hover {
+        font-weight: bold;
+    }

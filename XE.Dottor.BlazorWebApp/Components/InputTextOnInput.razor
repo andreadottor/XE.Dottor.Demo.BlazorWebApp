@@ -1,0 +1,8 @@
+﻿@* Inherits from the original InputText component *@
+@inherits InputText
+
+@* Bind the oninput event *@
+<input @attributes="AdditionalAttributes"
+       class="@CssClass"
+       value="@CurrentValue"
+       @oninput="EventCallback.Factory.CreateBinder<string>(this, __value => CurrentValueAsString = __value, CurrentValueAsString)" />

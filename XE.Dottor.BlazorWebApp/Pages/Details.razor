@@ -1,10 +1,6 @@
 ﻿@page "/Details/{Id:int}"
 @attribute [Authorize]
 
-@using System.Security.Cryptography;
-@using System.IO;
-@using System.Text;
-
 @using System.Net.Http
 @inject HttpClient Http
 @inject Store Store
@@ -68,12 +64,10 @@ else
         Comments = temp;
 
         loading = false;
-
     }
 
     private async Task<string> GetGravatarUrl(string email)
     {
-
         return await JSRuntime.InvokeAsync<string>("getGravatar", email, 100);
     }
 

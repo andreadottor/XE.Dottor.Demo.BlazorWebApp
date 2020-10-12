@@ -19,12 +19,14 @@
 
             <div class="form-group">
                 <label for="Password">Password:</label>
-                <InputText type="password" @bind-Value="Model.Password" class="form-control" />
+                <InputTextOnInput type="password" @bind-Value="Model.Password" class="form-control" />
+
                 <ValidationMessage For="() => Model.Password" />
             </div>
 
 
-            <button type="submit" disabled="@isInvalid">Submit</button>
+            <button type="submit" disabled="@isInvalid" class="btn btn-primary">Login</button>
+            <NavLink href="" class="btn btn-secondary">Annulla</NavLink>
         </EditForm>
     </div>
 </div>

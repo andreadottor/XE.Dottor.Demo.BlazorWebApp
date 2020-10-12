@@ -1,38 +1,33 @@
-﻿@inject IJSRuntime JSRuntime;
-
-@*<h2 style="text-transform: @(level > 0 ? "capitalize" : "uppercase")">@Value.Title</h2>*@
-
-<p></p>
+﻿@inject IJSRuntime JSRuntime
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 
-
-<div class="card">
+<div class="card mb-3">
     <div class="card-header text-center">
-        <NavLink href="@($"Details/{Value.Id}")"  >
+        <NavLink href="@($"Details/{Value.Id}")">
             @CreateTitle()
         </NavLink>
     </div>
     <div class="card-body">
-       
         @Value.Body
     </div>
     <div class="card-footer text-muted">
-        
+
         <div class="row">
             <div class="col-2">
                 <AuthorizeView>
                     <Authorized>
-                        <a @onclick="() => AddLike()" @onclick:preventDefault href="#">
-                            <i class="fas fa-heart"></i> @Value.Likes
+                        <a @onclick="() => AddLike()" @onclick:preventDefault href="#" title="Aggiungi 1 like" class="likeButton">
+                            <span class="oi oi-heart"></span> @Value.Likes
                         </a>
                     </Authorized>
                     <NotAuthorized>
-                        <i class="fas fa-heart"></i> @Value.Likes
+                        <span class="oi oi-heart"></span> @Value.Likes
                     </NotAuthorized>
                 </AuthorizeView>
             </div>
             <div class="col text-right">
-               <Tags Value="Value.Tags" />
+                <Tags Value="Value.Tags" OnTagClicked="TagClicked" />
             </div>
         </div>
 
@@ -43,29 +38,39 @@
 @code {
     [Parameter]
     public PostViewModel Value { get; set; }
-    const int userId = 1;
+
+    [Parameter]
+    public EventCallback<string> OnTagClicked { get; set; }
+
+    protected async Task TagClicked(string tag)
+    {
+        await OnTagClicked.InvokeAsync(tag);
+    }
 
     protected async Task AddLike()
     {
+        var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var userName = state.User.Identity.Name;
+
         Value.Likes++;
         // recupero i valori dallo storage
         //
-        var tempJsData = await JSRuntime.InvokeAsync<Dictionary<int, PostExtDto>>("readINFOS", userId);
+        var tempJsData = await JSRuntime.InvokeAsync<Dictionary<int, PostExtDto>>("readINFOS", userName);
         // aggiorno
         //
         tempJsData[Value.Id].likes = Value.Likes;
         //
         // eseguo il salvtaggio nello storage
-        await JSRuntime.InvokeVoidAsync("saveINFOS", tempJsData, userId);
+        await JSRuntime.InvokeVoidAsync("saveINFOS", tempJsData, userName);
     }
 
     /// <summary>
-    /// 
+    /// Funzione che si occupa di creare il tag del titolo
     /// </summary>
     /// <returns></returns>
     /// <remarks>
     /// const level = likes >= 42 ? 0 : 6 - Math.floor(likes / 6);      +     style: { "text-transform": level>0 ? "capitalize" : "uppercase" }
-    /// :  0-5 usa H6;  6-12 usa H5; ... ; 30-35 usa H1;  >=42->H0 
+    /// :  0-5 usa H6;  6-12 usa H5; ... ; 30-35 usa H1;  >=42->H0
     /// </remarks>
     private RenderFragment CreateTitle() => builder =>
     {
@@ -97,7 +102,6 @@
         }
 
         builder.AddAttribute(1, "style", "text-transform:" + (level > 0 ? "capitalize" : "uppercase"));
-        //builder.AddAttribute(2, "class", "card-title");
         builder.AddContent(3, Value.Title);
         builder.CloseElement();
     };

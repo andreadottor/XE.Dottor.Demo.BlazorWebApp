@@ -1,4 +1,4 @@
-﻿const getKey = (userId) => `INFOS_${userId || 0}`;
+﻿const getKey = (userId) => `INFOS_${userId || 'default-user'}`;
 const TAGS = ["angular", "blazor", "react", "vue", "typescript", ".net c#", "jsx", "javascript", "XE", "framework"];
 
 window.readINFOS = function(userId) {

@@ -17,13 +17,13 @@
         <li class="nav-item px-3">
             <AuthorizeView>
                 <Authorized>
-                    <a @onclick="() => LogOut()" @onclick:preventDefault href="#">
-                        Logout
+                    <a class="nav-link" @onclick="() => LogOut()" @onclick:preventDefault href="#">
+                        <span class="oi oi-account-logout"></span> Logout
                     </a>
                 </Authorized>
                 <NotAuthorized>
                     <NavLink class="nav-link" href="login">
-                        <i class="fas fa-key"></i> Login
+                        <span class="oi oi-account-login"></span> Login
                     </NavLink>
                 </NotAuthorized>
             </AuthorizeView>
