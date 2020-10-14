@@ -28,8 +28,8 @@
             {
                 identity = new ClaimsIdentity(new List<Claim>
                         {
-                            new Claim(ClaimTypes.Name, "XE-User"),
-                            new Claim(ClaimTypes.NameIdentifier, "xe"),
+                            new Claim(ClaimTypes.Name, "XE-User"),      // userName
+                            new Claim(ClaimTypes.NameIdentifier, "1")   // userId
                         }, "XeAuth");
             }
             else

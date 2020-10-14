@@ -37,11 +37,23 @@ else
     protected override async Task OnInitializedAsync()
     {
         var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var userName = state.User.Identity.Name;
+        var userName = "";
+        IEnumerable<PostDto> list;
+
 
         // leggo i dati dalle API
         //
-        var list = await Api.GetPostList();
+        if (!state.User.Identity.IsAuthenticated)
+        {
+            list = await Api.GetPostList();
+        }
+        else
+        {
+            var userId = state.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            userName = state.User.Identity.Name;
+            list = await Api.GetPostList(int.Parse(userId));
+        }
+
         // recupero le info aggiuntive fornite da una funzione JavaScript
         //
         var tempJsData = await Js.ReadInfo(userName);

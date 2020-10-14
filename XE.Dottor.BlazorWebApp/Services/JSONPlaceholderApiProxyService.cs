@@ -20,6 +20,11 @@
             return await _http.GetFromJsonAsync<IEnumerable<PostDto>>("https://jsonplaceholder.typicode.com/posts");
         }
 
+        public async Task<IEnumerable<PostDto>> GetPostList(int userId)
+        {
+            return await _http.GetFromJsonAsync<IEnumerable<PostDto>>($"https://jsonplaceholder.typicode.com/posts?userId={userId}");
+        }
+
         public async Task<IEnumerable<CommentDto>> GetPostComments(int postId)
         {
             return await _http.GetFromJsonAsync<IEnumerable<CommentDto>>($"https://jsonplaceholder.typicode.com/posts/{postId}/comments");

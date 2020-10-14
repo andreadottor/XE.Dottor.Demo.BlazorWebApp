@@ -73,35 +73,13 @@
     /// </remarks>
     private RenderFragment CreateTitle() => builder =>
     {
+
         var level = Value.Likes >= 42 ? 0 : (6 - Convert.ToInt32(Math.Floor((double)Value.Likes / 6)));
-
-        switch (Value.Likes)
-        {
-            case int n when (n <= 5):
-                builder.OpenElement(0, "H6");
-                break;
-            case int n when (n <= 12):
-                builder.OpenElement(0, "H5");
-                break;
-            case int n when (n <= 19):
-                builder.OpenElement(0, "H4");
-                break;
-            case int n when (n <= 23):
-                builder.OpenElement(0, "H3");
-                break;
-            case int n when (n <= 29):
-                builder.OpenElement(0, "H2");
-                break;
-            case int n when (n <= 35):
-                builder.OpenElement(0, "H1");
-                break;
-            default:
-                builder.OpenElement(0, "H0");
-                break;
-        }
-
+        builder.OpenElement(0, "H" + level);
         builder.AddAttribute(1, "style", "text-transform:" + (level > 0 ? "capitalize" : "uppercase"));
         builder.AddContent(3, Value.Title);
         builder.CloseElement();
     };
+
+
 }

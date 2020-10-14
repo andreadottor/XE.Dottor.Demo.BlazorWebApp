@@ -11,12 +11,7 @@
     public class Store
     {
 
-        public Store()
-        {
-            Posts = Enumerable.Empty<PostViewModel>();
-        }
-
-        public IEnumerable<PostViewModel> Posts { get; set; }
+        public IEnumerable<PostViewModel> Posts { get; set; } = Enumerable.Empty<PostViewModel>();
     }
     
 }
