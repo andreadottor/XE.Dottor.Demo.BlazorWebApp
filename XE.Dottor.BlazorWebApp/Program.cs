@@ -10,6 +10,7 @@ namespace XE.Dottor.BlazorWebApp
     using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
+    using XE.Dottor.BlazorWebApp.Services;
 
     public class Program
     {
@@ -23,6 +24,8 @@ namespace XE.Dottor.BlazorWebApp
             builder.Services.AddScoped<XeAuthenticationStateProvider>();
             builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<XeAuthenticationStateProvider>());
             builder.Services.AddScoped<Store>();
+            builder.Services.AddScoped<JSONPlaceholderApiProxyService>();
+            builder.Services.AddScoped<JsFunctionService>();
 
             await builder.Build().RunAsync();
         }

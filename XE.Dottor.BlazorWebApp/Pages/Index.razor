@@ -1,8 +1,7 @@
 ﻿@page "/"
 
-@using System.Net.Http
-@inject HttpClient Http
-@inject IJSRuntime JSRuntime
+@inject JSONPlaceholderApiProxyService api
+@inject JsFunctionService js
 @inject Store Store
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -24,24 +23,24 @@ else
     <p>Nessun post presente</p>
 }
 
-<Loading Visible="loading" />
+<Loading Visible="Loading" />
 
 @code {
 
     private IEnumerable<PostViewModel> filteredItems => string.IsNullOrEmpty(filterText) ? Store.Posts : Store.Posts.Where(p => p.Tags.Contains(filterText));
     private string filterText;
-    private bool loading = true;
+    private bool Loading { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var userName = state.User.Identity.Name;
 
-        var list = await Http.GetFromJsonAsync<PostDto[]>("https://jsonplaceholder.typicode.com/posts");
-        var tempJsData = await JSRuntime.InvokeAsync<Dictionary<int, PostExtDto>>("readINFOS", userName);
+        var list = await api.GetPostList();
+        var tempJsData = await js.ReadInfo(userName);
 
         Store.Posts = list.Select(p => new PostViewModel(p, tempJsData[p.Id])).ToArray();
-        loading = false;
+        Loading = false;
     }
 
     protected void TagClicked(string tag)

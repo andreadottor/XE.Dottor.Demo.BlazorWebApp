@@ -1,4 +1,4 @@
-﻿@inject IJSRuntime JSRuntime
+﻿@inject JsFunctionService js
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 
@@ -36,11 +36,9 @@
 
 
 @code {
-    [Parameter]
-    public PostViewModel Value { get; set; }
+    [Parameter] public PostViewModel Value { get; set; }
 
-    [Parameter]
-    public EventCallback<string> OnTagClicked { get; set; }
+    [Parameter] public EventCallback<string> OnTagClicked { get; set; }
 
     protected async Task TagClicked(string tag)
     {
@@ -55,13 +53,14 @@
         Value.Likes++;
         // recupero i valori dallo storage
         //
-        var tempJsData = await JSRuntime.InvokeAsync<Dictionary<int, PostExtDto>>("readINFOS", userName);
+        var tempJsData = await js.ReadInfo(userName);
         // aggiorno
         //
-        tempJsData[Value.Id].likes = Value.Likes;
-        //
+        tempJsData[Value.Id].Likes = Value.Likes;
+
         // eseguo il salvtaggio nello storage
-        await JSRuntime.InvokeVoidAsync("saveINFOS", tempJsData, userName);
+        // 
+        await js.SaveInfo(userName, tempJsData);
     }
 
     /// <summary>

@@ -3,20 +3,20 @@
     <ul class="tags">
         @foreach (var t in Value)
         {
-            <li class="tag" @onclick="_ => TagClicked(t)"><span class="oi oi-tag"></span> @t</li>
+            <li class="tag" @onclick="() => TagClicked(t)"><span class="oi oi-tag"></span> @t</li>
         }
     </ul>
 }
 
 @code {
-    [Parameter]
-    public IEnumerable<string> Value { get; set; }
+    [Parameter] public IEnumerable<string> Value { get; set; }
 
-    [Parameter]
-    public EventCallback<string> OnTagClicked { get; set; }
+    [Parameter] public EventCallback<string> OnTagClicked { get; set; }
 
     protected async Task TagClicked(string tag)
     {
         await OnTagClicked.InvokeAsync(tag);
     }
+
+    protected override bool ShouldRender() => false;
 }

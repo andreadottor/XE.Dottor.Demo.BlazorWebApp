@@ -23,8 +23,8 @@
         public PostViewModel(PostDto post, PostExtDto ext)
            : this(post)
         {
-            this.Likes = ext.likes;
-            this.Tags = ext.hashtags;
+            this.Likes = ext.Likes;
+            this.Tags = ext.Hashtags;
         }
 
         public int Likes { get; set; }

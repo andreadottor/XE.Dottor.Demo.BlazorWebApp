@@ -7,7 +7,7 @@
 
     public class PostExtDto
     {
-        public int likes { get; set; }
-        public IEnumerable<string> hashtags { get; set; }
+        public int Likes { get; set; }
+        public IEnumerable<string> Hashtags { get; set; }
     }
 }

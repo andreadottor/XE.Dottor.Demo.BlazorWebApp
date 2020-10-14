@@ -1,10 +1,10 @@
 ﻿@page "/Details/{Id:int}"
 @attribute [Authorize]
 
-@using System.Net.Http
-@inject HttpClient Http
+
+@inject JSONPlaceholderApiProxyService api
 @inject Store Store
-@inject IJSRuntime JSRuntime
+@inject JsFunctionService js
 
 <h3>Dettaglio post</h3>
 <hr />
@@ -36,16 +36,16 @@ else
     <p>post non trovato</p>
 }
 
-<Loading Visible="loading" />
+<Loading Visible="Loading" />
 
 
 @code {
-    [Parameter]
-    public int Id { get; set; }
-    private bool loading = true;
+    [Parameter] public int Id { get; set; }
 
-    public PostViewModel Post { get; set; }
-    public IEnumerable<CommentViewModel> Comments { get; set; }
+
+    private bool Loading { get; set; }
+    private PostViewModel Post { get; set; }
+    private IEnumerable<CommentViewModel> Comments { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -53,24 +53,18 @@ else
         Post = Store.Posts.FirstOrDefault(p => p.Id == Id);
 
 
-        var comments = await Http.GetFromJsonAsync<CommentDto[]>($"https://jsonplaceholder.typicode.com/posts/{Id}/comments");
+        var comments = await api.GetPostComments(Id);
 
         var temp = new List<CommentViewModel>();
         foreach (var comment in comments)
         {
-            temp.Add(new CommentViewModel(comment, await GetGravatarUrl(comment.Email)));
+            temp.Add(new CommentViewModel(comment, await js.GetGravatarUrl(comment.Email)));
         }
 
         Comments = temp;
 
-        loading = false;
+        Loading = false;
     }
-
-    private async Task<string> GetGravatarUrl(string email)
-    {
-        return await JSRuntime.InvokeAsync<string>("getGravatar", email, 100);
-    }
-
 
 
 }
