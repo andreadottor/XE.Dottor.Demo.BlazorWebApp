@@ -1,4 +1,4 @@
-﻿@inject JsFunctionService js
+﻿@inject JsFunctionService Js
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 
@@ -53,14 +53,14 @@
         Value.Likes++;
         // recupero i valori dallo storage
         //
-        var tempJsData = await js.ReadInfo(userName);
+        var tempJsData = await Js.ReadInfo(userName);
         // aggiorno
         //
         tempJsData[Value.Id].Likes = Value.Likes;
 
         // eseguo il salvtaggio nello storage
         // 
-        await js.SaveInfo(userName, tempJsData);
+        await Js.SaveInfo(userName, tempJsData);
     }
 
     /// <summary>

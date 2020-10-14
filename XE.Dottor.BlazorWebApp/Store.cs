@@ -1,11 +1,13 @@
 ﻿namespace XE.Dottor.BlazorWebApp
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using XE.Dottor.BlazorWebApp.Models;
 
+    /// <summary>
+    /// Classe che permette di mantenere lo stato dell'applicazione
+    /// utile per il passaggio di parametri tra pagine.
+    /// </summary>
     public class Store
     {
 

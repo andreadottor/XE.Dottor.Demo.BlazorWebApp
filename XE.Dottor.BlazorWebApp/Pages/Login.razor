@@ -41,8 +41,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
         loginEditContext = new EditContext(Model);
         loginEditContext.OnFieldChanged += EditContext_OnFieldChanged;
     }
@@ -56,13 +54,12 @@
     {
         if (Model.Password == Model.Username)
         {
+            // HACK: usato solo per simulare un'autenticazione
+            //
             XeAuthenticationStateProvider.IsAuthenticated = true;
             AuthStateProvider.NotifyAuthenticationStateChanged();
             NavigationManager.NavigateTo("/");
         }
     }
-
-
-
 
 }

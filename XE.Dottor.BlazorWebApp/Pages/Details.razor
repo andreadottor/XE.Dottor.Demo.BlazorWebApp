@@ -2,9 +2,9 @@
 @attribute [Authorize]
 
 
-@inject JSONPlaceholderApiProxyService api
+@inject JSONPlaceholderApiProxyService Api
 @inject Store Store
-@inject JsFunctionService js
+@inject JsFunctionService Js
 
 <h3>Dettaglio post</h3>
 <hr />
@@ -40,8 +40,8 @@ else
 
 
 @code {
-    [Parameter] public int Id { get; set; }
 
+    [Parameter] public int Id { get; set; }
 
     private bool Loading { get; set; }
     private PostViewModel Post { get; set; }
@@ -49,22 +49,21 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();
+        // recupero li post dallo store, così mi evito di chiamare l'API
+        //
         Post = Store.Posts.FirstOrDefault(p => p.Id == Id);
 
-
-        var comments = await api.GetPostComments(Id);
+        var comments = await Api.GetPostComments(Id);
 
         var temp = new List<CommentViewModel>();
         foreach (var comment in comments)
         {
-            temp.Add(new CommentViewModel(comment, await js.GetGravatarUrl(comment.Email)));
+            temp.Add(new CommentViewModel(comment, await Js.GetGravatarUrl(comment.Email)));
         }
 
         Comments = temp;
 
         Loading = false;
     }
-
 
 }

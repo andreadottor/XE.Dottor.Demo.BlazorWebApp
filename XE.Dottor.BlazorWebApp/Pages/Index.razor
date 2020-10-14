@@ -1,7 +1,7 @@
 ﻿@page "/"
 
-@inject JSONPlaceholderApiProxyService api
-@inject JsFunctionService js
+@inject JSONPlaceholderApiProxyService Api
+@inject JsFunctionService Js
 @inject Store Store
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -20,8 +20,11 @@
 }
 else
 {
-    <p>Nessun post presente</p>
+    <div class="alert alert-warning" role="alert">
+        Nessun post presente
+    </div>
 }
+
 
 <Loading Visible="Loading" />
 
@@ -36,10 +39,15 @@ else
         var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var userName = state.User.Identity.Name;
 
-        var list = await api.GetPostList();
-        var tempJsData = await js.ReadInfo(userName);
-
-        Store.Posts = list.Select(p => new PostViewModel(p, tempJsData[p.Id])).ToArray();
+        // leggo i dati dalle API
+        //
+        var list = await Api.GetPostList();
+        // recupero le info aggiuntive fornite da una funzione JavaScript
+        //
+        var tempJsData = await Js.ReadInfo(userName);
+        // faccio il merge dei dati in un unico ViewModel
+        //
+        Store.Posts = list.Select(p => new PostViewModel(p, tempJsData[p.Id]));
         Loading = false;
     }
 

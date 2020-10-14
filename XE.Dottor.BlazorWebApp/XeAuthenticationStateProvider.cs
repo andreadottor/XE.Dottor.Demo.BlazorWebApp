@@ -1,12 +1,16 @@
 ﻿namespace XE.Dottor.BlazorWebApp
 {
     using Microsoft.AspNetCore.Components.Authorization;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Permette di simulare il processo di autenticazione senza doversi appoggiare
+    /// a provider esterni.
+    /// Ritorna sempre lo stesso utente, con gli stessi claims definiti qui sotto
+    /// DA NON UTILIZZARE IN PRODUZIONE :)
+    /// </summary>
     public class XeAuthenticationStateProvider : AuthenticationStateProvider
     {
         public static bool IsAuthenticated { get; set; }
