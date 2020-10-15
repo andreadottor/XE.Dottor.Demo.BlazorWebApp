@@ -1,4 +1,5 @@
 ﻿@inject XeAuthenticationStateProvider AuthStateProvider
+@inject StateContainer Store
 
 <div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">XE Blazor App</a>
@@ -20,6 +21,8 @@
                     <a class="nav-link" @onclick="() => LogOut()" @onclick:preventDefault href="#">
                         <span class="oi oi-account-logout"></span> Logout
                     </a>
+                    <hr />
+                    <span class="text-white">User: @Store.CurrentUser.Name</span>
                 </Authorized>
                 <NotAuthorized>
                     <NavLink class="nav-link" href="login">
@@ -44,6 +47,7 @@
     private void LogOut()
     {
         XeAuthenticationStateProvider.IsAuthenticated = false;
+        Store.CurrentUser = null;
         AuthStateProvider.NotifyAuthenticationStateChanged();
     }
 }

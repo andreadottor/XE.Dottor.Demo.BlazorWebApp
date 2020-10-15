@@ -1,8 +1,10 @@
 ﻿@page "/Login"
 @layout FullLayout
 
+@inject StateContainer Store
 @inject NavigationManager NavigationManager
 @inject XeAuthenticationStateProvider AuthStateProvider
+@inject JSONPlaceholderApiProxyService Api
 
 <div class="card mx-auto" style="width: 25rem;">
     <div class="card-body">
@@ -49,16 +51,23 @@
         isInvalid = !loginEditContext.Validate();
     }
 
-    private void HandleValidSubmit()
+    private async Task HandleValidSubmit()
     {
-        if (Model.Password == Model.Username)
+        XeAuthenticationStateProvider.IsAuthenticating = true;
+
+        // HACK: usato solo per simulare un'autenticazione
+        //
+        var user = await Api.GetUser(Model.Username);
+        if (user != null)
         {
-            // HACK: usato solo per simulare un'autenticazione
-            //
+            Store.CurrentUser = user;
+
+            XeAuthenticationStateProvider.IsAuthenticating = false;
             XeAuthenticationStateProvider.IsAuthenticated = true;
             AuthStateProvider.NotifyAuthenticationStateChanged();
             NavigationManager.NavigateTo("/");
         }
+
     }
 
 }

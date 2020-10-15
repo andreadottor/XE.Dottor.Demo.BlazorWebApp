@@ -29,5 +29,14 @@
         {
             return await _http.GetFromJsonAsync<IEnumerable<CommentDto>>($"https://jsonplaceholder.typicode.com/posts/{postId}/comments");
         }
+
+        public async Task<UserDto> GetUser(string userName)
+        {
+            var users = await _http.GetFromJsonAsync<IEnumerable<UserDto>>($"https://jsonplaceholder.typicode.com/users?username={userName}");
+            if (users.Any())
+                return users.FirstOrDefault();
+
+            return null;
+        }
     }
 }

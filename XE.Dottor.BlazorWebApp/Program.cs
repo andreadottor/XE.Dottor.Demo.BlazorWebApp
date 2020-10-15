@@ -23,7 +23,7 @@ namespace XE.Dottor.BlazorWebApp
             builder.Services.AddAuthorizationCore();
             builder.Services.AddScoped<XeAuthenticationStateProvider>();
             builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<XeAuthenticationStateProvider>());
-            builder.Services.AddScoped<Store>();
+            builder.Services.AddScoped<StateContainer>();
             builder.Services.AddScoped<JSONPlaceholderApiProxyService>();
             builder.Services.AddScoped<JsFunctionService>();
 
