@@ -1,12 +1,11 @@
-﻿namespace XE.Dottor.BlazorWebApp.Services
+﻿namespace XE.Dottor.ApplicationCore.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Json;
     using System.Threading.Tasks;
-    using XE.Dottor.BlazorWebApp.Models;
+    using XE.Dottor.ApplicationCore.Models;
 
     public class JSONPlaceholderApiProxyService
     {
@@ -14,20 +13,19 @@
 
         public JSONPlaceholderApiProxyService(HttpClient http) => _http = http;
 
-
-        public async Task<IEnumerable<PostDto>> GetPostList()
+        public Task<IEnumerable<PostDto>> GetPostList()
         {
-            return await _http.GetFromJsonAsync<IEnumerable<PostDto>>("https://jsonplaceholder.typicode.com/posts");
+            return _http.GetFromJsonAsync<IEnumerable<PostDto>>("https://jsonplaceholder.typicode.com/posts");
         }
 
-        public async Task<IEnumerable<PostDto>> GetPostList(int userId)
+        public Task<IEnumerable<PostDto>> GetPostList(int userId)
         {
-            return await _http.GetFromJsonAsync<IEnumerable<PostDto>>($"https://jsonplaceholder.typicode.com/posts?userId={userId}");
+            return _http.GetFromJsonAsync<IEnumerable<PostDto>>($"https://jsonplaceholder.typicode.com/posts?userId={userId}");
         }
 
-        public async Task<IEnumerable<CommentDto>> GetPostComments(int postId)
+        public Task<IEnumerable<CommentDto>> GetPostComments(int postId)
         {
-            return await _http.GetFromJsonAsync<IEnumerable<CommentDto>>($"https://jsonplaceholder.typicode.com/posts/{postId}/comments");
+            return _http.GetFromJsonAsync<IEnumerable<CommentDto>>($"https://jsonplaceholder.typicode.com/posts/{postId}/comments");
         }
 
         public async Task<UserDto> GetUser(string userName)

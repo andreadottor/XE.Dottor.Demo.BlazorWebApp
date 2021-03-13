@@ -4,8 +4,6 @@
     using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using System.Xml.Linq;
-    using XE.Dottor.BlazorWebApp.Models;
 
     /// <summary>
     /// Permette di simulare il processo di autenticazione senza doversi appoggiare
@@ -37,8 +35,8 @@
 
                 identity = new ClaimsIdentity(new List<Claim>
                         {
-                            new Claim(ClaimTypes.Name, user.Name),      // userName
-                            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())   // userId
+                            new Claim(ClaimTypes.Name, user.Name),                      // userName
+                            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())    // userId
                         }, "XeAuth");
             }
             else

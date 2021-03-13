@@ -1,9 +1,6 @@
-﻿namespace XE.Dottor.BlazorWebApp.Models
+﻿namespace XE.Dottor.ApplicationCore.Models
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class PostExtDto
     {

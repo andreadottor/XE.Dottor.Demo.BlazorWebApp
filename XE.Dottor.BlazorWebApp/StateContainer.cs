@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using XE.Dottor.ApplicationCore.Models;
     using XE.Dottor.BlazorWebApp.Models;
 
     /// <summary>

@@ -10,6 +10,7 @@ namespace XE.Dottor.BlazorWebApp
     using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
+    using XE.Dottor.ApplicationCore.Services;
     using XE.Dottor.BlazorWebApp.Services;
 
     public class Program
