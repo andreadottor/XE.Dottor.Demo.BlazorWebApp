@@ -1,11 +1,13 @@
 ﻿@page
 @model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
 
 
-@(await Html.RenderComponentAsync<Counter>(RenderMode.Server, new { Label = "Blazor Conf - Counter", StartIndex = 10 }))
+@(await Html.RenderComponentAsync<Counter>(RenderMode.Server, 
+    new { 
+        Label = "Blazor Conf 2021 - Counter", 
+        StartIndex = 42 
+    }))
+
 
 @section Scripts{
     <script src="_framework/blazor.server.js"></script>

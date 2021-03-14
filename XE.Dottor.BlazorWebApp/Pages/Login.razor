@@ -4,7 +4,7 @@
 @inject StateContainer Store
 @inject NavigationManager NavigationManager
 @inject XeAuthenticationStateProvider AuthStateProvider
-@inject JSONPlaceholderApiProxyService Api
+@inject IApiProxyService Api
 
 <div class="card mx-auto" style="width: 25rem;">
     <div class="card-body">
@@ -70,7 +70,7 @@
 
         // HACK: usato solo per simulare un'autenticazione
         //
-        var user = await Api.GetUser(Model.Username);
+        var user = await Api.GetUserAsync(Model.Username);
         if (user != null)
         {
             Store.CurrentUser = user;

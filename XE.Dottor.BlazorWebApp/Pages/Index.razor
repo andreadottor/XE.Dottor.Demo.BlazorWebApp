@@ -1,6 +1,6 @@
 ﻿@page "/"
 
-@inject JSONPlaceholderApiProxyService Api
+@inject IApiProxyService Api
 @inject JsFunctionService Js
 @inject StateContainer Store
 @inject AuthenticationStateProvider AuthenticationStateProvider
@@ -13,9 +13,9 @@
 
 @if (Store.Posts != null && Store.Posts.Any())
 {
-    @foreach (var p in filteredItems)
+    @foreach (var post in filteredItems)
     {
-        <Post Value="@p" OnTagClicked="TagClicked" />
+        <Post Value="@post" OnTagClicked="TagClicked" />
     }
 }
 else
@@ -24,7 +24,6 @@ else
         Nessun post presente
     </div>
 }
-
 
 <Loading Visible="Loading" />
 
@@ -45,13 +44,13 @@ else
         //
         if (!state.User.Identity.IsAuthenticated)
         {
-            list = await Api.GetPostList();
+            list = await Api.GetPostListAsync();
         }
         else
         {
             var userId = state.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             userName = state.User.Identity.Name;
-            list = await Api.GetPostList(int.Parse(userId));
+            list = await Api.GetPostListAsync(int.Parse(userId));
         }
 
         // recupero le info aggiuntive fornite da una funzione JavaScript

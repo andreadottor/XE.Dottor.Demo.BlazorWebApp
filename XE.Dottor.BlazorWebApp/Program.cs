@@ -2,14 +2,11 @@ namespace XE.Dottor.BlazorWebApp
 {
     using Microsoft.AspNetCore.Components.Authorization;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
     using System;
-    using System.Collections.Generic;
     using System.Net.Http;
-    using System.Text;
     using System.Threading.Tasks;
+    using XE.Dottor.ApplicationCore.Interfaces;
     using XE.Dottor.ApplicationCore.Services;
     using XE.Dottor.BlazorWebApp.Services;
 
@@ -20,13 +17,15 @@ namespace XE.Dottor.BlazorWebApp
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddAuthorizationCore();
-            builder.Services.AddScoped<XeAuthenticationStateProvider>();
-            builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<XeAuthenticationStateProvider>());
-            builder.Services.AddScoped<StateContainer>();
-            builder.Services.AddScoped<JSONPlaceholderApiProxyService>();
-            builder.Services.AddScoped<JsFunctionService>();
+            
+            builder.Services.AddSingleton<XeAuthenticationStateProvider>();
+            builder.Services.AddSingleton<AuthenticationStateProvider>(provider => provider.GetRequiredService<XeAuthenticationStateProvider>());
+            builder.Services.AddSingleton<StateContainer>();
+
+            builder.Services.AddSingleton<IApiProxyService, JSONPlaceholderApiProxyService>();
+            builder.Services.AddSingleton<JsFunctionService>();
 
             await builder.Build().RunAsync();
         }

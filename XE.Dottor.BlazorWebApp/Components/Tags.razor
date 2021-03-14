@@ -1,9 +1,9 @@
 ﻿@if (Value != null && Value.Any())
 {
     <ul class="tags">
-        @foreach (var t in Value)
+        @foreach (var tag in Value)
         {
-            <li class="tag" @onclick="() => TagClicked(t)"><span class="oi oi-tag"></span> @t</li>
+            <li class="tag" @onclick="() => TagClicked(tag)"><span class="oi oi-tag"></span> @tag</li>
         }
     </ul>
 }

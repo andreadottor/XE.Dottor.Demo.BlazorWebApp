@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using XE.Dottor.ApplicationCore.Interfaces;
     using XE.Dottor.ApplicationCore.Services;
     using XE.Dottor.BlazorWebApp.Models;
     using XE.Dottor.BlazorWebApp.Services;
@@ -13,7 +14,7 @@
     {
 
         [Inject]
-        private JSONPlaceholderApiProxyService ApiProxyService { get; set; }
+        private IApiProxyService ApiProxyService { get; set; }
         [Inject]
         private StateContainer Store { get; set; }
         [Inject]
@@ -35,7 +36,7 @@
             //
             Post = Store.Posts.FirstOrDefault(p => p.Id == Id);
 
-            var comments = await ApiProxyService.GetPostComments(Id);
+            var comments = await ApiProxyService.GetPostCommentsAsync(Id);
 
             var temp = new List<CommentViewModel>();
             foreach (var comment in comments)
