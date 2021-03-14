@@ -1,11 +1,6 @@
 ﻿@page "/Details/{Id:int}"
 @attribute [Authorize]
 
-
-@inject JSONPlaceholderApiProxyService Api
-@inject StateContainer Store
-@inject JsFunctionService Js
-
 <h3>Dettaglio post</h3>
 <hr />
 
@@ -37,33 +32,3 @@ else
 }
 
 <Loading Visible="Loading" />
-
-
-@code {
-
-    [Parameter] public int Id { get; set; }
-
-    private bool Loading { get; set; }
-    private PostViewModel Post { get; set; }
-    private IEnumerable<CommentViewModel> Comments { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        // recupero li post dallo store, così mi evito di chiamare l'API
-        //
-        Post = Store.Posts.FirstOrDefault(p => p.Id == Id);
-
-        var comments = await Api.GetPostComments(Id);
-
-        var temp = new List<CommentViewModel>();
-        foreach (var comment in comments)
-        {
-            temp.Add(new CommentViewModel(comment, await Js.GetGravatarUrl(comment.Email)));
-        }
-
-        Comments = temp;
-
-        Loading = false;
-    }
-
-}

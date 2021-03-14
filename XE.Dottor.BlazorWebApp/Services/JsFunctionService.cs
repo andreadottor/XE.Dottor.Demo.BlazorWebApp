@@ -12,7 +12,6 @@
         public JsFunctionService(IJSRuntime jsRuntime) 
             => _jsRuntime = jsRuntime;
 
-
         /// <summary>
         /// Leggo le informazioni che mi vengono ritornate dalla funzione javascript readINFOS
         /// </summary>
@@ -31,5 +30,6 @@
         /// </summary>
         public async Task<string> GetGravatarUrl(string email)
                 => await _jsRuntime.InvokeAsync<string>("getGravatar", email, 100);
+
     }
 }

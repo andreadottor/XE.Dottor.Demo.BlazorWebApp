@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30524.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XE.Dottor.BlazorWebApp", "XE.Dottor.BlazorWebApp\XE.Dottor.BlazorWebApp.csproj", "{318654DF-D64E-4D7F-877E-ED8AC09CE0F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XE.Dottor.ApplicationCore", "XE.Dottor.ApplicationCore\XE.Dottor.ApplicationCore.csproj", "{0B330718-3220-4F5C-87FA-64031696F681}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XE.Dottor.ApplicationCore", "XE.Dottor.ApplicationCore\XE.Dottor.ApplicationCore.csproj", "{0B330718-3220-4F5C-87FA-64031696F681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XE.Dottor.RazorPagesApp", "XE.Dottor.RazorPagesApp\XE.Dottor.RazorPagesApp.csproj", "{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0B330718-3220-4F5C-87FA-64031696F681}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B330718-3220-4F5C-87FA-64031696F681}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B330718-3220-4F5C-87FA-64031696F681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
