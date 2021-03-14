@@ -1,7 +1,6 @@
 ﻿@inject JsFunctionService Js
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-
 <div class="card mb-3">
     <div class="card-header text-center">
         <NavLink href="@($"Details/{Value.Id}")">
@@ -34,10 +33,9 @@
     </div>
 </div>
 
-
 @code {
-    [Parameter] public PostViewModel Value { get; set; }
 
+    [Parameter] public PostViewModel Value { get; set; }
     [Parameter] public EventCallback<string> OnTagClicked { get; set; }
 
     protected async Task TagClicked(string tag)
@@ -57,7 +55,6 @@
         // aggiorno
         //
         tempJsData[Value.Id].Likes = Value.Likes;
-
         // eseguo il salvtaggio nello storage
         // 
         await Js.SaveInfo(userName, tempJsData);

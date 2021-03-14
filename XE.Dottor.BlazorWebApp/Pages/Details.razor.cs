@@ -1,12 +1,10 @@
 ﻿namespace XE.Dottor.BlazorWebApp.Pages
 {
     using Microsoft.AspNetCore.Components;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using XE.Dottor.ApplicationCore.Interfaces;
-    using XE.Dottor.ApplicationCore.Services;
     using XE.Dottor.BlazorWebApp.Models;
     using XE.Dottor.BlazorWebApp.Services;
 

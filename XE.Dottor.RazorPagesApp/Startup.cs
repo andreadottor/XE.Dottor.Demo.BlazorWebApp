@@ -2,7 +2,6 @@ namespace XE.Dottor.RazorPagesApp
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.HttpsPolicy;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -10,6 +9,8 @@ namespace XE.Dottor.RazorPagesApp
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using XE.Dottor.ApplicationCore.Interfaces;
+    using XE.Dottor.ApplicationCore.Services;
 
     public class Startup
     {
@@ -25,6 +26,8 @@ namespace XE.Dottor.RazorPagesApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            services.AddScoped<IApiProxyService, JSONPlaceholderApiProxyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

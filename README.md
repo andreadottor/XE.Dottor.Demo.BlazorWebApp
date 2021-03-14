@@ -4,11 +4,11 @@ Codice dell'evento "XE Online Meeting - **SPA Framework a confronto**" del 2020.
 
 Codice dell'evento "Blazor Conf 2021 - **Blazor per uno sviluppatore WebForm**" del 2021.03.18
 
-
 ## XE.Dottor.BlazorWebApp
 
 Applicazione Blazor WebAssembly che visualizza una lista di post recuperata da https://jsonplaceholder.typicode.com/posts .
-Logica dell'applicazione nel progetto XE.Dottor.ApplicationCore.
+Logica dell'applicazione nel progetto XE.Dottor.ApplicationCore.<br>
+L'aggiunta ai post di tag e dell numero di like iniziale viene fatto da una funzione JavaScript (solo per simulare un'altra sorgente dati).
 
 - Applicazione SPA
 - Uso di Componenti
@@ -20,7 +20,6 @@ Logica dell'applicazione nel progetto XE.Dottor.ApplicationCore.
 - Utilizzo di Gravatar per immagine utente che ha commentato
 - Interazione con JavaScript
   - Salvataggio dati temporanei nel localStorage del browser
-
 
 ## XE.Dottor.RazorPagesApp
 

@@ -18,7 +18,7 @@
         <Post Value="@post" OnTagClicked="TagClicked" />
     }
 }
-else
+else if(!Loading)
 {
     <div class="alert alert-warning" role="alert">
         Nessun post presente
@@ -31,14 +31,13 @@ else
 
     private IEnumerable<PostViewModel> filteredItems => string.IsNullOrEmpty(filterText) ? Store.Posts : Store.Posts.Where(p => p.Tags.Contains(filterText));
     private string filterText;
-    private bool Loading { get; set; }
+    private bool Loading { get; set; } = true;
 
     protected override async Task OnInitializedAsync()
     {
         var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var userName = "";
         IEnumerable<PostDto> list;
-
 
         // leggo i dati dalle API
         //
