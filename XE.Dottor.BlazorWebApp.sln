@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dottor.WebFormCounter", "Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dottor.BlazorCounter", "Dottor.BlazorCounter\Dottor.BlazorCounter.csproj", "{895E1953-1814-4577-A1A7-4DE9675F7BB5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Blazor WebAssembly - Blog", "2 - Blazor WebAssembly - Blog", "{D26523D6-853E-40FE-A588-FF6E1E27EA4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Blazor + Razor Pages", "3 - Blazor + Razor Pages", "{22501F53-EFB3-41AF-B736-EB3BB142E87A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{318654DF-D64E-4D7F-877E-ED8AC09CE0F1} = {D26523D6-853E-40FE-A588-FF6E1E27EA4A}
+		{0B330718-3220-4F5C-87FA-64031696F681} = {D26523D6-853E-40FE-A588-FF6E1E27EA4A}
+		{54ED501C-02A1-41A8-81FB-1BBD1B4D978B} = {22501F53-EFB3-41AF-B736-EB3BB142E87A}
 		{5B3A49FC-8C8B-40AC-BAC3-19FDE3BE2021} = {C107611B-D968-4275-9F7C-86905C7C5C3B}
 		{895E1953-1814-4577-A1A7-4DE9675F7BB5} = {C107611B-D968-4275-9F7C-86905C7C5C3B}
 	EndGlobalSection
