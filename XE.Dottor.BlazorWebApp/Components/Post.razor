@@ -70,7 +70,6 @@
     /// </remarks>
     private RenderFragment CreateTitle() => builder =>
     {
-
         var level = Value.Likes >= 42 ? 0 : (6 - Convert.ToInt32(Math.Floor((double)Value.Likes / 6)));
         builder.OpenElement(0, "H" + level);
         builder.AddAttribute(1, "style", "text-transform:" + (level > 0 ? "capitalize" : "uppercase"));

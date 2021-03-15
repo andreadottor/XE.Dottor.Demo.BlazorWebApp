@@ -7,14 +7,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XE.Dottor.BlazorWebApp", "X
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XE.Dottor.ApplicationCore", "XE.Dottor.ApplicationCore\XE.Dottor.ApplicationCore.csproj", "{0B330718-3220-4F5C-87FA-64031696F681}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XE.Dottor.RazorPagesApp", "XE.Dottor.RazorPagesApp\XE.Dottor.RazorPagesApp.csproj", "{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XE.Dottor.RazorPagesApp", "XE.Dottor.RazorPagesApp\XE.Dottor.RazorPagesApp.csproj", "{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9256822E-9B60-45EC-A9BE-35C5598E41BA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Solution Items", "0 - Solution Items", "{9256822E-9B60-45EC-A9BE-35C5598E41BA}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Counter DEMO", "1 - Counter DEMO", "{C107611B-D968-4275-9F7C-86905C7C5C3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dottor.WebFormCounter", "Dottor.WebFormCounter\Dottor.WebFormCounter.csproj", "{5B3A49FC-8C8B-40AC-BAC3-19FDE3BE2021}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dottor.BlazorCounter", "Dottor.BlazorCounter\Dottor.BlazorCounter.csproj", "{895E1953-1814-4577-A1A7-4DE9675F7BB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,9 +40,21 @@ Global
 		{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54ED501C-02A1-41A8-81FB-1BBD1B4D978B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B3A49FC-8C8B-40AC-BAC3-19FDE3BE2021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B3A49FC-8C8B-40AC-BAC3-19FDE3BE2021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B3A49FC-8C8B-40AC-BAC3-19FDE3BE2021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B3A49FC-8C8B-40AC-BAC3-19FDE3BE2021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{895E1953-1814-4577-A1A7-4DE9675F7BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{895E1953-1814-4577-A1A7-4DE9675F7BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{895E1953-1814-4577-A1A7-4DE9675F7BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{895E1953-1814-4577-A1A7-4DE9675F7BB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B3A49FC-8C8B-40AC-BAC3-19FDE3BE2021} = {C107611B-D968-4275-9F7C-86905C7C5C3B}
+		{895E1953-1814-4577-A1A7-4DE9675F7BB5} = {C107611B-D968-4275-9F7C-86905C7C5C3B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {560C8955-DF70-4931-AF24-9FB0A833BC38}

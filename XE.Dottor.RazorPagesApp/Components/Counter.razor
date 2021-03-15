@@ -13,10 +13,8 @@
 
 @code {
 
-    [Parameter]
-    public string Label { get; set; }
-    [Parameter]
-    public int StartIndex { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public int StartIndex { get; set; }
 
     private int Index { get; set; }
 
@@ -29,6 +27,7 @@
     {
         Index++;
     }
+
     protected void Decrement()
     {
         Index--;
