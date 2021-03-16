@@ -1,28 +1,3 @@
 ﻿@page "/"
 
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">DEMO Counter Blazor</h5>
-        <p class="card-text">
-            @CounterValue
-        </p>
-        <button class="btn btn-primary" @onclick="Increment">+ 1</button>
-        <button class="btn btn-primary" @onclick="Decrement">- 1</button>
-    </div>
-</div>
-
-
-@code {
-
-    private int CounterValue { get; set; }
-
-    protected void Increment()
-    {
-        CounterValue++;
-    }
-
-    protected void Decrement()
-    {
-        CounterValue--;
-    }
-}
+<Counter Title="DEMO counter con Blazor" StartValue="42" />

@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Counter DEMO", "1 - Cou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dottor.WebFormCounter", "Dottor.WebFormCounter\Dottor.WebFormCounter.csproj", "{5B3A49FC-8C8B-40AC-BAC3-19FDE3BE2021}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dottor.BlazorCounter", "Dottor.BlazorCounter\Dottor.BlazorCounter.csproj", "{895E1953-1814-4577-A1A7-4DE9675F7BB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dottor.BlazorCounter", "Dottor.BlazorCounter\Dottor.BlazorCounter.csproj", "{895E1953-1814-4577-A1A7-4DE9675F7BB5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Blazor WebAssembly - Blog", "2 - Blazor WebAssembly - Blog", "{D26523D6-853E-40FE-A588-FF6E1E27EA4A}"
 EndProject
