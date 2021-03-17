@@ -43,7 +43,10 @@
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                lblCounter.Text = StartValue.ToString();
+            {
+                CounterValue = StartValue;
+                lblCounter.Text = CounterValue.ToString();
+            }
         }
 
         protected void btnIncrement_Click(object sender, EventArgs e)

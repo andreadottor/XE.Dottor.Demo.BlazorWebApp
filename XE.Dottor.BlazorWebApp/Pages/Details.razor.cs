@@ -23,7 +23,7 @@
         public int Id { get; set; }
 
 
-        private bool Loading { get; set; }
+        private bool Loading { get; set; } = true;
         private PostViewModel Post { get; set; }
         private IEnumerable<CommentViewModel> Comments { get; set; }
 

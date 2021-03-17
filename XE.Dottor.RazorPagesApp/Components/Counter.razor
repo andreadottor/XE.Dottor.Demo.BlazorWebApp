@@ -1,35 +1,33 @@
 ﻿<div class="card">
     <div class="card-body">
-        <h5 class="card-title">@Label</h5>
+        <h5 class="card-title">@Title</h5>
         <p class="card-text">
-            @Index
+            @CounterValue
         </p>
         <button class="btn btn-primary" @onclick="Increment">+ 1</button>
         <button class="btn btn-primary" @onclick="Decrement">- 1</button>
     </div>
 </div>
 
-
-
 @code {
 
-    [Parameter] public string Label { get; set; }
-    [Parameter] public int StartIndex { get; set; }
+    [Parameter] public string Title { get; set; }
+    [Parameter] public int StartValue { get; set; }
 
-    private int Index { get; set; }
+    private int CounterValue { get; set; }
 
     protected override void OnInitialized()
     {
-        Index = StartIndex;
+        CounterValue = StartValue;
     }
 
     protected void Increment()
     {
-        Index++;
+        CounterValue++;
     }
 
     protected void Decrement()
     {
-        Index--;
+        CounterValue--;
     }
 }
