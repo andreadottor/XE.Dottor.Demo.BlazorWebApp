@@ -1,0 +1,23 @@
+﻿@page "/Sample3"
+
+<h3>Uso dei Generics</h3>
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <Widget Title="Numero" Value="12" />
+    </div>
+
+    <div class="col-sm-6">
+        <Widget Title="Data" Value="@DateTime.Now" />
+    </div>
+
+    <div class="col-sm-6">
+        <Widget Title="Testo" Value="@("Blazor")" />
+    </div>
+
+    <div class="col-sm-6">
+        <Widget Title="Guid" Value="@Guid.NewGuid()" />
+    </div>
+
+</div>

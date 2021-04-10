@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dottor.BlazorTips", "Dottor.BlazorTips\Dottor.BlazorTips.csproj", "{3AE13975-5EE4-4DFE-9BD4-810C238EB8DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AE13975-5EE4-4DFE-9BD4-810C238EB8DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE13975-5EE4-4DFE-9BD4-810C238EB8DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE13975-5EE4-4DFE-9BD4-810C238EB8DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE13975-5EE4-4DFE-9BD4-810C238EB8DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {133F556C-6C19-4294-AE48-E0F8F8B2E84A}
+	EndGlobalSection
+EndGlobal

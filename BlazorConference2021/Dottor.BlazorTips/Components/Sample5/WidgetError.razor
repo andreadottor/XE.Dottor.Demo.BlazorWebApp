@@ -1,0 +1,13 @@
+﻿@typeparam T
+@inherits WidgetBase<T>
+
+<div class="card bg-danger m-2">
+    <div class="card-header text-white">
+        @Title
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><img src="@GetImagePath()" /></li>
+        <li class="list-group-item"><strong>@Value</strong></li>
+        <li class="list-group-item">@Value.GetType().Name</li>
+    </ul>
+</div>

@@ -1,0 +1,13 @@
+﻿<div class="card bg-primary text-white m-2">
+    <div class="card-header">@Title</div>
+    <div class="card-body">
+        <p class="card-text">@Text</p>
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string Text { get; set; }
+
+}

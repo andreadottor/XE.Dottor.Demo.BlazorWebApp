@@ -1,0 +1,27 @@
+﻿@page "/Sample2"
+@inject DashboardService DashboardService
+
+
+<h3>Componenti dinamici con RenderFragment</h3>
+
+<div class="row">
+
+    @foreach (var item in DashboardService.GetCards())
+    {
+        <div class="col-6">
+            @CreateCard(item)
+        </div>
+    }
+</div>
+
+@code {
+
+    private RenderFragment CreateCard(CardModel card) => builder =>
+    {
+        builder.OpenComponent(0, card.ComponentType);
+        builder.AddAttribute(1, "Title", card.Title);
+        builder.AddAttribute(2, "Text", card.Text);
+        builder.CloseElement();
+    };
+
+}
