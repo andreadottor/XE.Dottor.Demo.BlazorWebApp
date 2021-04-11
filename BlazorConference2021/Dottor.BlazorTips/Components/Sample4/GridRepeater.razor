@@ -16,6 +16,7 @@
 
     [Parameter] public IEnumerable<TItem> Data { get; set; }
     [Parameter] public RenderFragment<TItem> ChildContent { get; set; }
+
     [Parameter] public int Columns { get; set; } = 2;
 
     private string ColumnClass => $"col-sm-{12 / Columns}";

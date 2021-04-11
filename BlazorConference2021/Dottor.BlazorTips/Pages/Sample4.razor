@@ -3,10 +3,11 @@
 
 <h3>Uso dei Generics</h3>
 
+<GridRepeater Data="DashboardService.GetCards()" 
+              Columns="3">
 
-
-<GridRepeater Data="DashboardService.GetCards()" Columns="3">
-
-    <BootstrapCard Title="@context.Title" Text="@context.Text" />
+    <BootstrapCard 
+            Title="@context.Title" 
+            Text="@context.Text" />
 
 </GridRepeater>

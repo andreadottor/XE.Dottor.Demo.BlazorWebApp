@@ -2,7 +2,7 @@
 @inject DashboardService DashboardService
 
 
-<h3>Componenti dinamici con RenderFragment</h3>
+<h3>Componenti aggiunti dinamicamente</h3>
 
 <div class="row">
 
@@ -12,6 +12,7 @@
             @CreateCard(item)
         </div>
     }
+
 </div>
 
 @code {
@@ -21,7 +22,7 @@
         builder.OpenComponent(0, card.ComponentType);
         builder.AddAttribute(1, "Title", card.Title);
         builder.AddAttribute(2, "Text", card.Text);
-        builder.CloseElement();
+        builder.CloseComponent();
     };
 
 }

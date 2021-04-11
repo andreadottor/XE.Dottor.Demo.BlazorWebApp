@@ -10,12 +10,10 @@
     public class DashboardService
     {
 
-
         public IEnumerable<CardModel> GetCards()
         {
             // https://quotes-react.netlify.app/
             List<CardModel> list = new();
-
 
             list.Add(new CardModel
             {

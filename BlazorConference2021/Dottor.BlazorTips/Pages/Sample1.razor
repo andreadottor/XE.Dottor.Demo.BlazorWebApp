@@ -1,19 +1,16 @@
 ﻿@page "/Sample1"
 
-
 <h3>HTML dinamico con RenderFragment</h3>
-
 
 <div class="card">
     <div class="card-body">
         @CreateTitle()
         <h6 class="card-subtitle mb-2 text-muted">Andrea Dottor</h6>
         <p class="card-text">Dal RenderFragment ai Generics, tips for Blazor developers</p>
-        <button class="btn btn-primary" @onclick="Increment">Riduci titolo</button>
-        <button class="btn btn-primary"  @onclick="Decrement">Ingrandisci titolo</button>
+        <button class="btn btn-primary" @onclick="Decrement">Titolo pi&ugrave; grande</button>
+        <button class="btn btn-primary" @onclick="Increment">Titolo pi&ugrave; piccolo</button>
     </div>
 </div>
-
 
 @code {
 
@@ -31,16 +28,13 @@
         if (Value > 1) Value--;
     }
 
-
     private RenderFragment CreateTitle() => builder =>
     {
+        var colorClass = Value == 1 ? " text-danger" : 
+                         Value == 6 ? " text-success" : "";
 
-        var colorClass = Value == 1 ? "text-danger" : 
-                         Value == 6 ? "text-success" : "";
-
-        builder.OpenElement(0, "H" + Value);
-        builder.AddAttribute(1, "class", $"card-title {colorClass}");
-
+        builder.OpenElement(0, $"H{Value}");
+        builder.AddAttribute(1, "class", $"card-title{colorClass}");
         builder.AddContent(2, TitleText);
         builder.CloseElement();
     };
