@@ -1,0 +1,39 @@
+﻿@page "/Sample2b"
+@inject DashboardService DashboardService
+
+<h3>Componenti aggiunti dinamicamente + reflection</h3>
+
+<div class="row">
+
+    @foreach (var item in DashboardService.GetCards())
+    {
+        <div class="col-6">
+            @CreateCard(item)
+        </div>
+    }
+
+</div>
+
+@code {
+
+    private RenderFragment CreateCard(CardModel card) => builder =>
+    {
+        builder.OpenComponent(0, card.ComponentType);
+        var props = card.GetType()
+                        .GetProperties()
+                        .Where(prop => Attribute.IsDefined(prop, typeof(MapAttribute)));
+
+        int seq = 0;
+
+        foreach (var prop in props)
+        {
+            builder.AddAttribute(
+                        seq++, 
+                        prop.Name, 
+                        prop.GetValue(card, null));
+        }
+
+        builder.CloseComponent();
+    };
+
+}
