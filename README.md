@@ -1,4 +1,4 @@
-# BlazorWebApp
+# Demo degli eventi dove parlo di Blazor
 
 Codice dell'evento "*XE Online Meeting* - **SPA Framework a confronto**" del 2020.10.16
 

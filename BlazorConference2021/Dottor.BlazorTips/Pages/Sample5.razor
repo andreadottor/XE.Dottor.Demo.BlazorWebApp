@@ -6,19 +6,27 @@
 <div class="row">
 
     <div class="col-sm-6">
-        <WidgetBest Title="Numero" Value="12" />
+        <WidgetBest Title="Numero" Value="@ValueNumber" />
     </div>
 
     <div class="col-sm-6">
-        <WidgetBest Title="Data" Value="@DateTime.Now" />
+        <WidgetSuccess Title="Data" Value="@ValueDate" />
     </div>
 
     <div class="col-sm-6">
-        <WidgetBest Title="Testo" Value="@("Blazor")" />
+        <WidgetBest Title="Testo" Value="@ValueText" />
     </div>
 
     <div class="col-sm-6">
-        <WidgetError Title="Guid" Value="@Guid.NewGuid()" />
+        <WidgetError Title="Guid" Value="@ValueGuid" />
     </div>
 
 </div>
+
+@code {
+
+    private int ValueNumber = 42;
+    private string ValueText = "Blazor";
+    private DateTime ValueDate = DateTime.Now;
+    private Guid ValueGuid = Guid.NewGuid();
+}

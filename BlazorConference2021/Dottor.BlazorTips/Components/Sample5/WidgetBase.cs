@@ -10,19 +10,13 @@
 
         protected string GetImagePath()
         {
-            switch (Value)
+            return Value switch
             {
-                case long:
-                case int:
-                case short:
-                    return "/images/numbers.png";
-                case DateTime:
-                    return "/images/calendar.png";
-                case string:
-                    return "/images/letters.png";
-                default:
-                    return "/images/question_mark.png";
-            }
+                long or int or short => "/images/numbers.png",
+                DateTime or DateTimeOffset => "/images/calendar.png",
+                string or char => "/images/letters.png",
+                _ => "/images/question_mark.png",
+            };
         }
 
     }

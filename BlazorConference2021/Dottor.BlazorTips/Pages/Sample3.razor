@@ -5,19 +5,27 @@
 <div class="row">
 
     <div class="col-sm-6">
-        <Widget Title="Numero" Value="12" />
+        <Widget Title="Numero" Value="@ValueNumber" />
     </div>
 
     <div class="col-sm-6">
-        <Widget Title="Data" Value="@DateTime.Now" />
+        <Widget Title="Data" Value="@ValueDate" />
     </div>
 
     <div class="col-sm-6">
-        <Widget Title="Testo" Value="@("Blazor")" />
+        <Widget Title="Testo" Value="@ValueText" />
     </div>
 
     <div class="col-sm-6">
-        <Widget Title="Guid" Value="@Guid.NewGuid()" />
+        <Widget Title="Guid" Value="@ValueGuid" />
     </div>
 
 </div>
+
+@code {
+
+    private int ValueNumber = 42;
+    private string ValueText = "Blazor";
+    private DateTime ValueDate= DateTime.Now;
+    private Guid ValueGuid = Guid.NewGuid();
+}
