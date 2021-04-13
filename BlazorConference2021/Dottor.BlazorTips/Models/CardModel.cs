@@ -4,7 +4,7 @@
     using Dottor.BlazorTips.Attributes;
     using Dottor.BlazorTips.Components.Sample2;
 
-    public class CardModel
+    public class CardModel : IDynamicContent
     {
 
         public Type ComponentType { get; set; } = typeof(BootstrapCard);

@@ -16,7 +16,7 @@
 
 @code {
 
-    private RenderFragment CreateCard(CardModel card) => builder =>
+    private RenderFragment CreateCard(IDynamicContent card) => builder =>
     {
         builder.OpenComponent(0, card.ComponentType);
         var props = card.GetType()
