@@ -3,11 +3,23 @@
 
 <h3>Uso dei Generics e RenderFragment</h3>
 
+<select @bind="@Column" class="form-control">
+    <option value="1">1 colonna</option>
+    <option value="2">2 colonne</option>
+    <option value="3">3 colonne</option>
+    <option value="4">4 colonne</option>
+    <option value="6">6 colonne</option>
+</select>
+
 <GridRepeater Data="DashboardService.GetCards()" 
-              Columns="3">
+              Columns="@Column">
 
     <BootstrapCard 
             Title="@context.Title" 
             Text="@context.Text" />
 
 </GridRepeater>
+
+@code {
+    public int Column { get; set; } = 2;
+}
