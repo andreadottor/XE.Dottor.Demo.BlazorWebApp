@@ -11,3 +11,11 @@
         <li class="list-group-item">@Value.GetType().Name</li>
     </ul>
 </div>
+
+@code {
+
+    protected override string GetImagePath()
+    {
+        return base.GetImagePath();
+    }
+}

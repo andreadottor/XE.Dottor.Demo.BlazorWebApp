@@ -1,0 +1,27 @@
+﻿@implements IDisposable
+
+<button type="submit" 
+        class="btn btn-success" 
+        disabled="@(!Context.IsModified())">Save</button>
+
+@code {
+
+    [CascadingParameter]
+    public EditContext Context { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        Context.OnFieldChanged += FieldChanged;
+    }
+
+    private void FieldChanged(object sender, FieldChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        Context.OnFieldChanged -= FieldChanged;
+    }
+}

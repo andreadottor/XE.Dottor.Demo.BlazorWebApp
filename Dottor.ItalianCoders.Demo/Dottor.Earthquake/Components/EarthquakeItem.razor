@@ -1,0 +1,19 @@
+﻿
+<div class="card mb-3">
+    <div class="card-header">
+        @Item.Time.ToString("dd/MM/yyyy HH:mm:ss")
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Item.Title</h5>
+        <NavLink class="btn btn-outline-primary" href="@($"earthquake/{Item.Id}")">
+            <span class="oi oi-map-marker" aria-hidden="true"></span> @Item.Place
+        </NavLink>
+        <a href="@Item.Url" target="_blank" class="btn btn-outline-info">
+            <span class="oi oi-magnifying-glass" aria-hidden="true"></span> Details
+        </a>
+    </div>
+</div>
+
+@code {
+    [Parameter] public EarthquakeModel Item { get; set; }
+}

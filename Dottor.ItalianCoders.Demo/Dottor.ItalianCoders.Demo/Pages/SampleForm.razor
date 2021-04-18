@@ -1,0 +1,60 @@
+﻿@page "/sampleform"
+
+<h3>Esempio Form di registrazione</h3>
+
+
+<EditForm Model="Input" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <InputText @bind-Value="Input.Username" name="Username" class="form-control" />
+        <ValidationMessage For="() => Input.Username" />
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <InputText @bind-Value="Input.Email" name="Email" class="form-control" />
+        <ValidationMessage For="() => Input.Email" />
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <InputText @bind-Value="Input.Password" type="password" name="Password" class="form-control" />
+        <ValidationMessage For="() => Input.Password" />
+    </div>
+
+    <div class="form-group">
+        <label for="ConfirmPassword">Confirm password</label>
+        <InputText @bind-Value="Input.ConfirmPassword" type="password" name="ConfirmPassword" class="form-control" />
+        <ValidationMessage For="() => Input.ConfirmPassword" />
+    </div>
+
+
+    <FormSubmitButton />
+
+</EditForm>
+
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <div role="alert" class="alert alert-success mt-3">
+        @Message
+    </div>
+}
+
+
+@code {
+
+    public RegistrationModel Input { get; set; } = new RegistrationModel();
+
+    public string Message { get; set; }
+
+    private void HandleValidSubmit()
+    {
+        Input = new RegistrationModel();
+        Message = "Registrazione avvenuta con successo!";
+    }
+}

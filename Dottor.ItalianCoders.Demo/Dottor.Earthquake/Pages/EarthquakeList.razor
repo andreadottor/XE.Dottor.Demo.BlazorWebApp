@@ -1,0 +1,43 @@
+﻿@page "/earthquake-list"
+@inject IEarthquakeService EarthquakeService
+
+
+<div class="row mb-3">
+    <div class="col-2">
+        <img height="100" src="./_content/Dottor.Earthquake/usgs_400x400.jpg" alt="USGS logo" />
+    </div>
+    <div class="col align-self-center">
+        <h3>Elenco terremoti ultime 24 ore</h3>
+    </div>
+</div>
+
+
+
+
+
+@if (List == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <Virtualize Items="List">
+        <EarthquakeItem @key="@context.Id" Item="@context" />
+    </Virtualize>
+
+}
+
+
+
+@code {
+
+
+    public ICollection<EarthquakeModel> List { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        List = await EarthquakeService.GetPastDayAllAsync();
+
+    }
+}

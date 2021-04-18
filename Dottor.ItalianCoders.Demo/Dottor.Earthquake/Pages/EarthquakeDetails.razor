@@ -1,0 +1,53 @@
+﻿@page "/earthquake/{id}"
+@inject IEarthquakeService EarthquakeService
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+
+
+<div @ref="mapElement" style='width: 100%; height: 300px;'></div>
+
+@if (Details != null)
+{
+    <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item"><h1>@Details.Title</h1></li>
+        <li class="list-group-item"><h5>@Details.Place</h5></li>
+        <li class="list-group-item">Orario: <strong>@Details.Time.ToString("dd/MM/yyyy HH:mm:ss")</strong></li>
+        <li class="list-group-item">Magnitudo: <strong>@Details.Mag</strong></li>
+    </ul>
+}
+
+<NavLink class="btn btn-secondary" href="earthquake-list">
+    <span class="oi oi-audio-spectrum" aria-hidden="true"></span> Ritorna alla lista
+</NavLink>
+
+@code {
+
+    [Parameter] public string Id { get; set; }
+
+    public EarthquakeModel Details { get; set; }
+
+    ElementReference mapElement;
+    IJSObjectReference mapModule;
+    IJSObjectReference mapInstance;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Details = await EarthquakeService.GetDetailsAsync(Id);
+
+        mapModule = await JS.InvokeAsync<IJSObjectReference>(
+                                    "import",
+                                    "./_content/Dottor.Earthquake/mapComponent.js");
+        mapInstance = await mapModule.InvokeAsync<IJSObjectReference>(
+                                    "addMapToElement",
+                                    mapElement,
+                                    Details.Coordinates[1],
+                                    Details.Coordinates[0]);
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        await mapInstance.DisposeAsync();
+        await mapModule.DisposeAsync();
+    }
+}

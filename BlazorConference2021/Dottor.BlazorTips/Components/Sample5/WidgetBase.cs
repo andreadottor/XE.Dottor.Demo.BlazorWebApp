@@ -8,7 +8,7 @@
         [Parameter] public string Title { get; set; }
         [Parameter] public TValue Value { get; set; }
 
-        protected string GetImagePath()
+        protected virtual string GetImagePath()
         {
             return Value switch
             {
