@@ -1,0 +1,20 @@
+﻿@page "/sample-js"
+@inject IJSRuntime JSRuntime
+
+<h3>Uso di Chart.js</h3>
+
+<canvas @ref="chartElement"></canvas>
+
+@code {
+
+    ElementReference chartElement;
+
+    private int[] data = { 12, 19, 3, 25, 2, 3 };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await JSRuntime.InvokeVoidAsync("draw", chartElement, data);
+    }
+
+}
