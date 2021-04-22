@@ -1,19 +1,17 @@
-﻿@page "/earthquake-list"
+﻿@page "/earthquakes"
 @inject IEarthquakeService EarthquakeService
 
 
 <div class="row mb-3">
     <div class="col-2">
-        <img height="100" src="./_content/Dottor.Earthquake/usgs_400x400.jpg" alt="USGS logo" />
+        <img height="100" 
+             src="./_content/Dottor.Earthquake/usgs_400x400.jpg" 
+             alt="USGS logo" />
     </div>
     <div class="col align-self-center">
         <h3>Elenco terremoti ultime 24 ore</h3>
     </div>
 </div>
-
-
-
-
 
 @if (List == null)
 {
@@ -21,17 +19,12 @@
 }
 else
 {
-
     <Virtualize Items="List">
         <EarthquakeItem @key="@context.Id" Item="@context" />
     </Virtualize>
-
 }
 
-
-
 @code {
-
 
     public ICollection<EarthquakeModel> List { get; set; }
 
@@ -40,4 +33,5 @@ else
         List = await EarthquakeService.GetPastDayAllAsync();
 
     }
+
 }

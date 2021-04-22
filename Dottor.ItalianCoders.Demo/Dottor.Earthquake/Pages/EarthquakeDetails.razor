@@ -1,11 +1,11 @@
-﻿@page "/earthquake/{id}"
+﻿@page "/earthquakes/{id}"
 @inject IEarthquakeService EarthquakeService
 @inject IJSRuntime JS
 @implements IAsyncDisposable
 
 
 
-<div @ref="mapElement" style='width: 100%; height: 300px;'></div>
+<div @ref="mapElement" style='height: 300px;'></div>
 
 @if (Details != null)
 {
@@ -17,9 +17,9 @@
     </ul>
 }
 
-<NavLink class="btn btn-secondary" href="earthquake-list">
+<a class="btn btn-secondary" href="earthquakes">
     <span class="oi oi-audio-spectrum" aria-hidden="true"></span> Ritorna alla lista
-</NavLink>
+</a>
 
 @code {
 

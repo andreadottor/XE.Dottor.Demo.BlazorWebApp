@@ -5,9 +5,9 @@
     </div>
     <div class="card-body">
         <h5 class="card-title">@Item.Title</h5>
-        <NavLink class="btn btn-outline-primary" href="@($"earthquake/{Item.Id}")">
+        <a class="btn btn-outline-primary" href="earthquakes/@Item.Id">
             <span class="oi oi-map-marker" aria-hidden="true"></span> @Item.Place
-        </NavLink>
+        </a>
         <a href="@Item.Url" target="_blank" class="btn btn-outline-info">
             <span class="oi oi-magnifying-glass" aria-hidden="true"></span> Details
         </a>
