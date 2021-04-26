@@ -6,6 +6,12 @@ Codice dell'evento "*Blazor Conf 2021* - **Blazor per uno sviluppatore WebForm**
 
 Codice dell'evento "*Blazor Conferenze 2021* - **Dal RenderFragment ai Generics, tips for Blazor developers**" del 2021.04.13
 
+Codice dell'[evento live per Italian Coders](https://youtu.be/E6Lq1k-ddaw) **Blazor, dove siamo arrivati?**"  del 2021.04.22
+
+## Dottor.ItalianCoders.Demo
+
+Demo che fa uso di Lazy Loading, Virtualized e JavaScript isolation.
+
 ## XE.Dottor.BlazorWebApp
 
 Applicazione Blazor WebAssembly che visualizza una lista di post recuperata da https://jsonplaceholder.typicode.com/posts .
@@ -31,4 +37,4 @@ Esempio di utilizzo di Blazor Server in un'applicazione ASP.NET Core che utilizz
 
 Tricks per generazione di codice html e componenti dinamicamente.
 
-Utilizzo di *Generics* ed *ereditariet‡*
+Utilizzo di *Generics* ed *ereditariet√†*
