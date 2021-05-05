@@ -2,11 +2,9 @@
 
 <h3>Esempio Form di registrazione</h3>
 
-
 <EditForm Model="Input" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
-
 
     <div class="form-group">
         <label for="Username">Username</label>
@@ -32,11 +30,9 @@
         <ValidationMessage For="() => Input.ConfirmPassword" />
     </div>
 
-
     <FormSubmitButton />
 
 </EditForm>
-
 
 @if (!string.IsNullOrEmpty(Message))
 {
@@ -54,6 +50,10 @@
 
     private void HandleValidSubmit()
     {
+        // TODO: Eseguo il salvataggio
+        // ...
+
+        // Reset dei dati della form, dopo il corretto salvataggio
         Input = new RegistrationModel();
         Message = "Registrazione avvenuta con successo!";
     }
